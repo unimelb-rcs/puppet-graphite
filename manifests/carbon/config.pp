@@ -61,12 +61,4 @@ class graphite::carbon::config {
     require => File['/etc/carbon']
   }
 
-  file { '/etc/carbon/carbon.conf':
-    ensure  => present,
-    source  => $graphite::carbon::config_file,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    require => File['/etc/carbon']
-  }
 }
