@@ -144,6 +144,7 @@ class graphite::carbon(
   }
 
   if $relay_enable == true {
+    class { 'graphite::carbon::relay::config': }
     class { 'graphite::carbon::relay::service': }
   }
 
@@ -162,6 +163,8 @@ class graphite::carbon(
     }
 
     if $relay_enable == true {
+      Class['graphite::carbon::config']  -> Class['graphite::carbon::relay::config']
+      Class['graphite::carbon::relay::config']  -> Class['graphite::carbon::relay::service']
       Class['graphite::carbon::package'] -> Class['graphite::carbon::relay::service']
       Class['graphite::carbon::config']  -> Class['graphite::carbon::relay::service']
     }
