@@ -92,6 +92,8 @@ class graphite(
   $carbon_relay_default_file             = undef,
   $carbon_aggregator_init_file           = "puppet:///modules/${module_name}/etc/aggregator-init",
   $carbon_aggregator_default_file        = undef,
+
+  $web_enable                            = false,
   $web_dashboard_config_file             = "puppet:///modules/${module_name}/etc/graphite-web/dashboard.conf",
   $web_local_settings_file               = "puppet:///modules/${module_name}/etc/graphite-web/local_settings.py",
 
@@ -197,6 +199,7 @@ class graphite(
   class { 'graphite::whisper': }
 
   class { 'graphite::web':
+    enable                => $web_enable,
     dashboard_config_file => $web_dashboard_config_file,
     local_settings_file   => $web_local_settings_file,
   }

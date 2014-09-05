@@ -67,6 +67,7 @@ class graphite::web(
   $autoupgrade             = $graphite::params::autoupgrade,
   $status                  = $graphite::params::status,
   $version                 = false,
+  $enable                  = false,
   $dashboard_config_file   = "puppet:///modules/${module_name}/etc/graphite-web/dashboard.conf",
   $local_settings_file     = "puppet:///modules/${module_name}/etc/graphite-web/local_settings.py"
 ) inherits graphite::params {
@@ -78,23 +79,24 @@ class graphite::web(
     fail("\"${ensure}\" is not a valid ensure parameter value")
   }
 
-  # autoupgrade
+  validate_bool($enable)
   validate_bool($autoupgrade)
 
   #### Manage actions
 
-  # package(s)
-  class { 'graphite::web::package': }
+  if $enable {
+    # package(s)
+    class { 'graphite::web::package': }
 
-  # configuration
-  class { 'graphite::web::config': }
+    # configuration
+    class { 'graphite::web::config': }
 
-  #### Manage relationships
+    #### Manage relationships
 
-  if $ensure == 'present' {
-    # we need the software before configuring it
-    Class['graphite::web::package'] -> Class['graphite::web::config']
+    if $ensure == 'present' {
+      # we need the software before configuring it
+      Class['graphite::web::package'] -> Class['graphite::web::config']
 
+    }
   }
-
 }
