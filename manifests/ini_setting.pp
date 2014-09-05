@@ -5,7 +5,7 @@ define graphite::ini_setting ($setting, $value, $section)
       ensure  => present,
       path    => '/etc/carbon/carbon.conf',
       section => $section,
-      setting => upcase($name),
+      setting => upcase($setting),
       value   => $value,
     }
   }

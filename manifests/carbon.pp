@@ -201,14 +201,10 @@ class graphite::carbon(
 
   }
 
-  if ($graphite::params::service_default_user != undef) {
-    ini_setting {'carbon_cache_user':
-      ensure  => present,
-      path    => '/etc/carbon/carbon.conf',
-      section => 'cache',
-      setting => 'USER',
-      value   => $graphite::params::service_default_user;
-    }
+  graphite::ini_setting {'cache_user':
+    section => 'cache',
+    setting => 'user',
+    value => $graphite::params::service_default_user;
   }
   graphite::ini_setting {'cache_max_cache_size':
     section => 'cache',
@@ -261,14 +257,10 @@ class graphite::carbon(
     value => $cache_qeuery_interface;
   }
 
-  if ($graphite::params::service_default_user != undef) {
-    ini_setting {'carbon_relay_user':
-      ensure  => present,
-      path    => '/etc/carbon/carbon.conf',
-      section => 'relay',
-      setting => 'USER',
-      value   => $graphite::params::service_default_user;
-    }
+  graphite::ini_setting {'relay_user':
+    section => 'relay',
+    setting => 'user',
+    value => $graphite::params::service_default_user;
   }
   graphite::ini_setting {'relay_line_receiver_interface':
     section => 'relay',
@@ -322,14 +314,10 @@ class graphite::carbon(
   }
 
 
-  if ($graphite::params::service_default_user != undef) {
-    ini_setting {'carbon_aggregator_user':
-      ensure  => present,
-      path    => '/etc/carbon/carbon.conf',
-      section => 'aggregator',
-      setting => 'USER',
-      value   => $graphite::params::service_default_user;
-    }
+  graphite::ini_setting {'aggregator_user':
+    section => 'aggregator',
+    setting => 'user',
+    value => $graphite::params::service_default_user;
   }
   graphite::ini_setting {'aggregator_line_receiver_interface':
     section => 'aggregator',
