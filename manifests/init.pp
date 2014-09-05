@@ -196,8 +196,6 @@ class graphite(
 
   }
 
-  class { 'graphite::whisper': }
-
   class { 'graphite::web':
     enable                => $web_enable,
     dashboard_config_file => $web_dashboard_config_file,

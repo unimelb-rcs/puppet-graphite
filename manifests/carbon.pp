@@ -139,6 +139,7 @@ class graphite::carbon(
 
   # service(s)
   if $cache_enable == true {
+    class { 'graphite::whisper': }
     class { 'graphite::carbon::cache::service': }
   }
 
