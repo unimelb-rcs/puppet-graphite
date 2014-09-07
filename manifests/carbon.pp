@@ -201,177 +201,109 @@ class graphite::carbon(
 
   }
 
-  graphite::ini_setting {'cache_user':
-    section => 'cache',
-    setting => 'user',
+  graphite::carbon::cache::ini_setting {'user':
     value => $graphite::params::service_default_user;
   }
-  graphite::ini_setting {'cache_max_cache_size':
-    section => 'cache',
-    setting => 'max_cache_size',
+  graphite::carbon::cache::ini_setting {'max_cache_size':
     value => $cache_max_cache_size;
   }
-  graphite::ini_setting {'cache_max_updates_per_second':
-    section => 'cache',
-    setting => 'max_updates_per_second',
+  graphite::carbon::cache::ini_setting {'max_updates_per_second':
     value => $cache_max_updates_per_second;
   }
-  graphite::ini_setting {'cache_max_creates_per_minute':
-    section => 'cache',
-    setting => 'max_creates_per_minute',
+  graphite::carbon::cache::ini_setting {'max_creates_per_minute':
     value => $cache_max_creates_per_minute;
   }
-  graphite::ini_setting {'cache_line_receiver_interface':
-    section => 'cache',
-    setting => 'line_receiver_interface',
+  graphite::carbon::cache::ini_setting {'line_receiver_interface':
     value => $cache_line_receiver_interface;
   }
-  graphite::ini_setting {'cache_line_receiver_port':
-    section => 'cache',
-    setting => 'line_receiver_port',
+  graphite::carbon::cache::ini_setting {'line_receiver_port':
     value => $cache_line_receiver_port;
   }
-  graphite::ini_setting {'cache_udp_receiver_interface':
-    section => 'cache',
-    setting => 'udp_receiver_interface',
+  graphite::carbon::cache::ini_setting {'udp_receiver_interface':
     value => $cache_udp_receiver_interface;
   }
-  graphite::ini_setting {'cache_udp_receiver_port':
-    section => 'cache',
-    setting => 'udp_receiver_port',
+  graphite::carbon::cache::ini_setting {'udp_receiver_port':
     value => $cache_udp_receiver_port;
   }
-  graphite::ini_setting {'cache_pickle_receiver_interface':
-    section => 'cache',
-    setting => 'pickle_receiver_interface',
+  graphite::carbon::cache::ini_setting {'pickle_receiver_interface':
     value => $cache_pickle_receiver_interface;
   }
-  graphite::ini_setting {'cache_pickle_receiver_port':
-    section => 'cache',
-    setting => 'pickle_receiver_port',
+  graphite::carbon::cache::ini_setting {'pickle_receiver_port':
     value => $cache_pickle_receiver_port;
   }
-  graphite::ini_setting {'cache_cache_query_interface':
-    section => 'cache',
-    setting => 'cache_query_interface',
+  graphite::carbon::cache::ini_setting {'query_interface':
     value => $cache_qeuery_interface;
   }
 
-  graphite::ini_setting {'relay_user':
-    section => 'relay',
-    setting => 'user',
+  graphite::carbon::relay::ini_setting {'user':
     value => $graphite::params::service_default_user;
   }
-  graphite::ini_setting {'relay_line_receiver_interface':
-    section => 'relay',
-    setting => 'line_receiver_interface',
+  graphite::carbon::relay::ini_setting {'line_receiver_interface':
     value => $relay_line_receiver_interface;
   }
-  graphite::ini_setting {'relay_line_receiver_port':
-    section => 'relay',
-    setting => 'line_receiver_port',
+  graphite::carbon::relay::ini_setting {'line_receiver_port':
     value => $relay_line_receiver_port;
   }
-  graphite::ini_setting {'relay_pickle_receiver_interface':
-    section => 'relay',
-    setting => 'pickle_receiver_interface',
+  graphite::carbon::relay::ini_setting {'pickle_receiver_interface':
     value => $relay_pickle_receiver_interface;
   }
-  graphite::ini_setting {'relay_pickle_receiver_port':
-    section => 'relay',
-    setting => 'pickle_receiver_port',
+  graphite::carbon::relay::ini_setting {'pickle_receiver_port':
     value => $relay_pickle_receiver_port;
   }
-  graphite::ini_setting {'relay_destinations':
-    section => 'relay',
-    setting => 'destinations',
+  graphite::carbon::relay::ini_setting {'destinations':
     value => $relay_destinations;
   }
-  graphite::ini_setting {'relay_method':
-    section => 'relay',
-    setting => 'method',
+  graphite::carbon::relay::ini_setting {'method':
     value => $relay_method;
   }
-  graphite::ini_setting {'relay_replication_factor':
-    section => 'relay',
-    setting => 'replication_factor',
+  graphite::carbon::relay::ini_setting {'replication_factor':
     value => $relay_replication_factor;
   }
-  graphite::ini_setting {'relay_max_queue_size':
-    section => 'relay',
-    setting => 'max_queue_size',
+  graphite::carbon::relay::ini_setting {'max_queue_size':
     value => $relay_max_queue_size;
   }
-  graphite::ini_setting {'relay_use_flow_control':
-    section => 'relay',
-    setting => 'use_flow_control',
+  graphite::carbon::relay::ini_setting {'use_flow_control':
     value => $relay_use_flow_control;
   }
-  graphite::ini_setting {'relay_max_datapoints_per_message':
-    section => 'relay',
-    setting => 'max_datapoints_per_message',
+  graphite::carbon::relay::ini_setting {'max_datapoints_per_message':
     value => $relay_max_datapoints_per_message;
   }
 
 
-  graphite::ini_setting {'aggregator_user':
-    section => 'aggregator',
-    setting => 'user',
+  graphite::carbon::aggregator::ini_setting {'user':
     value => $graphite::params::service_default_user;
   }
-  graphite::ini_setting {'aggregator_line_receiver_interface':
-    section => 'aggregator',
-    setting => 'line_receiver_interface',
+  graphite::carbon::aggregator::ini_setting {'line_receiver_interface':
     value => $aggregator_line_receiver_interface;
   }
-  graphite::ini_setting {'aggregator_line_receiver_port':
-    section => 'aggregator',
-    setting => 'line_receiver_port',
+  graphite::carbon::aggregator::ini_setting {'line_receiver_port':
     value => $aggregator_line_receiver_port;
   }
-  graphite::ini_setting {'aggregator_pickle_receiver_interface':
-    section => 'aggregator',
-    setting => 'pickle_receiver_interface',
+  graphite::carbon::aggregator::ini_setting {'pickle_receiver_interface':
     value => $aggregator_pickle_receiver_interface;
   }
-  graphite::ini_setting {'aggregator_pickle_receiver_port':
-    section => 'aggregator',
-    setting => 'pickle_receiver_port',
+  graphite::carbon::aggregator::ini_setting {'pickle_receiver_port':
     value => $aggregator_pickle_receiver_port;
   }
-  graphite::ini_setting {'aggregator_destinations':
-    section => 'aggregator',
-    setting => 'destinations',
+  graphite::carbon::aggregator::ini_setting {'destinations':
     value => $aggregator_destinations;
   }
-  graphite::ini_setting {'aggregator_forward_all':
-    section => 'aggregator',
-    setting => 'forward_all',
+  graphite::carbon::aggregator::ini_setting {'forward_all':
     value => $aggregator_forward_all;
   }
-  graphite::ini_setting {'aggregator_replication_factor':
-    section => 'aggregator',
-    setting => 'replication_factor',
+  graphite::carbon::aggregator::ini_setting {'replication_factor':
     value => $aggregator_replication_factor;
   }
-  graphite::ini_setting {'aggregator_max_queue_size':
-    section => 'aggregator',
-    setting => 'max_queue_size',
+  graphite::carbon::aggregator::ini_setting {'max_queue_size':
     value => $aggregator_max_queue_size;
   }
-  graphite::ini_setting {'aggregator_use_flow_control':
-    section => 'aggregator',
-    setting => 'use_flow_control',
+  graphite::carbon::aggregator::ini_setting {'use_flow_control':
     value => $aggregator_use_flow_control;
   }
-  graphite::ini_setting {'aggregator_max_datapoints_per_message':
-    section => 'aggregator',
-    setting => 'max_datapoints_per_message',
+  graphite::carbon::aggregator::ini_setting {'max_datapoints_per_message':
     value => $aggregator_max_datapoints_per_message;
   }
-  graphite::ini_setting {'max_aggregation_intervals':
-    section => 'aggregator',
-    setting => 'max_aggregation_intervals',
+  graphite::carbon::aggregator::ini_setting {'max_aggregation_intervals':
     value => $aggregator_max_aggregation_intervals;
   }
 
