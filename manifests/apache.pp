@@ -14,11 +14,12 @@ class graphite::apache (
 
   file { '/etc/apache2/sites-enabled/graphite':
     ensure  => link,
-    source  => '/etc/apache2/sites-available/graphite',
+    target  => '/etc/apache2/sites-available/graphite',
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    require => Package[$graphite::params::package_web],
+    require => [Package[$graphite::params::package_web],
+                File['/etc/apache2/sites-available/graphite']],
     notify  => Service[$service],
   }
 
