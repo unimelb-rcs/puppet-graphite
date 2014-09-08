@@ -12,6 +12,7 @@ define graphite::carbon::cache::ini_setting ($value)
       setting => upcase($name),
       value   => $value,
       notify  => $notify,
+      require => Package[$graphite::params::package_carbon],
     }
   }
 }
