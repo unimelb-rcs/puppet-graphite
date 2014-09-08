@@ -33,7 +33,7 @@ class graphite::web::config {
     mode   => '0644'
   }
 
-  file { $graphite::params::web_config_path:
+  file { "${graphite::params::web_config_path}/local_settings.py":
     ensure  => present,
     source  => $graphite::web::local_settings_file,
     owner   => 'root',
@@ -42,7 +42,7 @@ class graphite::web::config {
     require => File[$graphite::params::web_config_path]
   }
 
-  file { $graphite::params::web_config_path:
+  file { "$graphite::params::web_config_path/dashboard.conf":
     ensure  => present,
     source  => $graphite::web::dashboard_config_file,
     owner   => 'root',
