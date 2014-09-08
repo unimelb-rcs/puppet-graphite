@@ -27,7 +27,7 @@ class graphite::web::package {
   #### Package management
 
   # set params: in operation
-  if $graphite::ensure == 'present' {
+  if $graphite::web::ensure == 'present' {
 
     # Check if we want to install a specific version or not
     if $graphite::version == false {
