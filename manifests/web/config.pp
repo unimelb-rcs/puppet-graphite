@@ -26,29 +26,29 @@ class graphite::web::config {
 
   #### Configuration
 
-  file { '/etc/graphite-web':
+  file { $graphite::params::web_config_path:
     ensure => directory,
     owner  => 'root',
     group  => 'root',
     mode   => '0644'
   }
 
-  file { '/etc/graphite-web/local_settings.py':
+  file { $graphite::params::web_config_path:
     ensure  => present,
     source  => $graphite::web::local_settings_file,
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    require => File['/etc/carbon']
+    require => File[$graphite::params::web_config_path]
   }
 
-  file { '/etc/graphite-web/dashboard.conf':
+  file { $graphite::params::web_config_path:
     ensure  => present,
     source  => $graphite::web::dashboard_config_file,
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    require => File['/etc/carbon']
+    require => File[$graphite::params::web_config_path]
   }
 
 }

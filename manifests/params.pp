@@ -92,6 +92,7 @@ class graphite::params {
       $service_aggregator_hasstatus  = true
       $service_aggregator_pattern    = $service_aggregator_name
 
+      $web_config_path = '/etc/graphite-web'
     }
     'Debian', 'Ubuntu': {
       $service_default_path     = '/etc/default'
@@ -112,6 +113,14 @@ class graphite::params {
       $service_aggregator_hasstatus  = true
       $service_aggregator_pattern    = $service_aggregator_name
 
+      case $::lsbdistcodename {
+        'Trusty': {
+          $web_config_path = '/etc/graphite'
+        }
+        default: {
+          $web_config_path = '/etc/graphite-web'
+        }
+      }
     }
     default: {
       fail("\"${module_name}\" provides no service parameters
