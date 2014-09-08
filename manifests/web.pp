@@ -69,7 +69,16 @@ class graphite::web(
   $version                 = false,
   $enable                  = false,
   $dashboard_config_file   = "puppet:///modules/${module_name}/etc/graphite-web/dashboard.conf",
-  $local_settings_file     = "puppet:///modules/${module_name}/etc/graphite-web/local_settings.py"
+
+  $secret_key,
+
+  $database_username,
+  $database_password,
+  $database_host,
+  $database_port,
+
+  $carbonlink_hosts,
+
 ) inherits graphite::params {
 
   #### Validate parameters
@@ -89,7 +98,16 @@ class graphite::web(
     class { 'graphite::web::package': }
 
     # configuration
-    class { 'graphite::web::config': }
+    class { 'graphite::web::config':
+      secret_key            => $secret_key,
+
+      database_username     => $database_username,
+      database_password     => $database_password,
+      database_host         => $database_host,
+      database_port         => $database_port,
+
+      carbonlink_hosts      => $carbonlink_hosts,
+    }
 
     #### Manage relationships
 
@@ -98,5 +116,7 @@ class graphite::web(
       Class['graphite::web::package'] -> Class['graphite::web::config']
 
     }
+
+
   }
 }

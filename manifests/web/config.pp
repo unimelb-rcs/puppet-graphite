@@ -22,10 +22,19 @@
 #
 # * Richard Pijnenburg <mailto:richard@ispavailability.com>
 #
-class graphite::web::config {
+class graphite::web::config (
+  $secret_key,
+
+  $database_username,
+  $database_password,
+  $database_host,
+  $database_port = '',
+
+  $carbonlink_hosts,
+)
+{
 
   #### Configuration
-
   file { $graphite::params::web_config_path:
     ensure => directory,
     owner  => 'root',
@@ -35,7 +44,7 @@ class graphite::web::config {
 
   file { "${graphite::params::web_config_path}/local_settings.py":
     ensure  => present,
-    source  => $graphite::web::local_settings_file,
+    content => template("${module_name}/etc/graphite-web/local_settings.py.erb"),
     owner   => 'root',
     group   => 'root',
     mode    => '0644',

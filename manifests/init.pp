@@ -95,7 +95,14 @@ class graphite(
 
   $web_enable                            = false,
   $web_dashboard_config_file             = "puppet:///modules/${module_name}/etc/graphite-web/dashboard.conf",
-  $web_local_settings_file               = "puppet:///modules/${module_name}/etc/graphite-web/local_settings.py",
+  $web_secret_key                        = undef,
+
+  $web_database_username                 = undef,
+  $web_database_password                 = undef,
+  $web_database_host                     = undef,
+  $web_database_port                     = '',
+
+  $web_carbonlink_hosts                  = undef,
 
   $cache_storage_dir                     = undef,
   $cache_local_data_dir                  = undef,
@@ -195,11 +202,19 @@ class graphite(
     aggregator_max_aggregation_intervals  => $aggregator_max_aggregation_intervals,
 
   }
-
   class { 'graphite::web':
     enable                => $web_enable,
     dashboard_config_file => $web_dashboard_config_file,
-    local_settings_file   => $web_local_settings_file,
+
+    secret_key            => $web_secret_key,
+
+    database_username     => $web_database_username,
+    database_password     => $web_database_password,
+    database_host         => $web_database_host,
+    database_port         => $web_database_port,
+
+    carbonlink_hosts      => $web_carbonlink_hosts,
+
   }
 
 }
