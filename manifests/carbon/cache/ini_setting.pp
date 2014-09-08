@@ -1,5 +1,9 @@
 define graphite::carbon::cache::ini_setting ($value)
 {
+  if defined(Service['carbon-cache']) {
+    $notify = Service['carbon-cache']
+  }
+
   if ($value != undef) {
     ini_setting {"carbon_cache_${name}":
       ensure  => present,
@@ -7,8 +11,7 @@ define graphite::carbon::cache::ini_setting ($value)
       section => 'cache',
       setting => upcase($name),
       value   => $value,
-      notify  => Service['carbon-cache'],
+      notify  => $notify,
     }
   }
 }
-

@@ -1,5 +1,9 @@
 define graphite::carbon::aggregator::ini_setting ($value)
 {
+  if defined(Service['carbon-aggregator']) {
+    $notify = Service['carbon-aggregator']
+  }
+
   if ($value != undef) {
     ini_setting {"carbon_aggregator_${name}":
       ensure  => present,
@@ -7,8 +11,7 @@ define graphite::carbon::aggregator::ini_setting ($value)
       section => 'aggregator',
       setting => upcase($name),
       value   => $value,
-      notify  => Service['carbon-aggregator'],
+      notify  => $notify,
     }
   }
 }
-
