@@ -253,7 +253,7 @@ class graphite::carbon(
   graphite::carbon::relay::ini_setting {'destinations':
     value => $relay_destinations;
   }
-  graphite::carbon::relay::ini_setting {'method':
+  graphite::carbon::relay::ini_setting {'relay_method':
     value => $relay_method;
   }
   graphite::carbon::relay::ini_setting {'replication_factor':
