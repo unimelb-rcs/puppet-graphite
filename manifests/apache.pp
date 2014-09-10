@@ -23,4 +23,9 @@ class graphite::apache (
     notify  => Service[$service],
   }
 
+  file { '/etc/apache2/sites-enabled/000-default.conf':
+    ensure  => absent,
+    notify  => Service[$service],
+  }
+
 }
