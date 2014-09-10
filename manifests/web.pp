@@ -63,23 +63,24 @@
 # * Richard Pijnenburg <mailto:richard@ispavailability.com>
 #
 class graphite::web(
-  $ensure                  = $graphite::params::ensure,
-  $autoupgrade             = $graphite::params::autoupgrade,
-  $status                  = $graphite::params::status,
-  $version                 = false,
-  $enable                  = false,
-  $dashboard_config_file   = "puppet:///modules/${module_name}/etc/graphite-web/dashboard.conf",
+  $ensure                = $graphite::params::ensure,
+  $autoupgrade           = $graphite::params::autoupgrade,
+  $status                = $graphite::params::status,
+  $version               = false,
+  $enable                = false,
+  $dashboard_config_file = "puppet:///modules/${module_name}/etc/graphite-web/dashboard.conf",
 
   $secret_key,
 
-  $database_username,
-  $database_password,
-  $database_host,
-  $database_port,
-  $database_backend = 'django.db.backends.sqlite3',
+  $database_name         = '/var/lib/graphite/graphite.db',
+  $database_username     = '',
+  $database_password     = '',
+  $database_host         = '',
+  $database_port         = '',
+  $database_backend      = 'django.db.backends.sqlite3',
 
-  $cluster_servers = undef,
-  $carbonlink_hosts = undef,
+  $cluster_servers       = undef,
+  $carbonlink_hosts      = undef,
 
 ) inherits graphite::params {
 
@@ -110,12 +111,14 @@ class graphite::web(
     class { 'graphite::web::config':
       secret_key            => $secret_key,
 
+      database_name         => $database_name,
       database_username     => $database_username,
       database_password     => $database_password,
       database_host         => $database_host,
       database_port         => $database_port,
 
       carbonlink_hosts      => $carbonlink_hosts,
+      cluster_servers       => $cluster_servers,
     }
 
     #### Manage relationships

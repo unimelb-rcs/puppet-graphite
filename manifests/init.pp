@@ -97,9 +97,10 @@ class graphite(
   $web_dashboard_config_file             = "puppet:///modules/${module_name}/etc/graphite-web/dashboard.conf",
   $web_secret_key                        = undef,
 
-  $web_database_username                 = undef,
-  $web_database_password                 = undef,
-  $web_database_host                     = undef,
+  $web_database_name                     = '/var/lib/graphite/graphite.db',
+  $web_database_username                 = '',
+  $web_database_password                 = '',
+  $web_database_host                     = '',
   $web_database_port                     = '',
   $web_database_backend                  = 'django.db.backends.sqlite3',
 
@@ -210,6 +211,7 @@ class graphite(
 
     secret_key            => $web_secret_key,
 
+    database_name         => $web_database_name,
     database_username     => $web_database_username,
     database_password     => $web_database_password,
     database_host         => $web_database_host,

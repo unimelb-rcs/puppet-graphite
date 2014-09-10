@@ -150,7 +150,7 @@ INDEX_FILE = '/var/lib/graphite/search_index'  # Search index file
 
 DATABASES = {
    'default': {
-       'NAME': 'graphite',
+       'NAME': '<%= @database_name %>',
        'ENGINE': '<%= @database_backend %>',
        'USER': '<%= @database_username %>',
        'PASSWORD': '<%= @database_password %>',
