@@ -108,6 +108,7 @@ class graphite::web(
         exec { 'graphite-syncdb':
           command => 'graphite-manage syncdb --noinput',
           creates => $database_name,
+          user    => '_graphite',
           path    => ["/usr/bin", "/usr/sbin"]
         }
       }
