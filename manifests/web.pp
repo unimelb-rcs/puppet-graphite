@@ -104,6 +104,13 @@ class graphite::web(
       'django.db.backends.mysql': {
         ensure_packages(['python-mysqldb'])
       }
+      'django.db.backends.sqlite3': {
+        exec { 'graphite-syncdb':
+          command => 'graphite-manage',
+          creates => $database_name,
+          path    => ["/usr/bin", "/usr/sbin"]
+        }
+      }
     }
 
 
