@@ -25,12 +25,14 @@
 class graphite::web::config (
   $secret_key,
 
+  $database_name,
   $database_username,
   $database_password,
   $database_host,
-  $database_port = '',
+  $database_port,
 
   $carbonlink_hosts,
+  $cluster_servers,
 )
 {
 
