@@ -101,8 +101,10 @@ class graphite(
   $web_database_password                 = undef,
   $web_database_host                     = undef,
   $web_database_port                     = '',
+  $web_database_backend                  = 'django.db.backends.sqlite3',
 
   $web_carbonlink_hosts                  = undef,
+  $web_cluster_servers                   = undef,
 
   $cache_storage_dir                     = undef,
   $cache_local_data_dir                  = undef,
@@ -212,9 +214,10 @@ class graphite(
     database_password     => $web_database_password,
     database_host         => $web_database_host,
     database_port         => $web_database_port,
+    database_backend      => $web_database_backend,
 
     carbonlink_hosts      => $web_carbonlink_hosts,
-
+    cluster_servers       => $web_cluster_servers,
   }
 
 }

@@ -76,7 +76,9 @@ class graphite::web(
   $database_password,
   $database_host,
   $database_port,
+  $database_backend = 'django.db.backends.sqlite3',
 
+  $cluster_servers,
   $carbonlink_hosts,
 
 ) inherits graphite::params {
@@ -96,6 +98,13 @@ class graphite::web(
   if $enable {
     # package(s)
     class { 'graphite::web::package': }
+
+    case $database_backend {
+      'django.db.backends.mysql': {
+        ensure_packages(['python-mysqldb'])
+      }
+    }
+
 
     # configuration
     class { 'graphite::web::config':
