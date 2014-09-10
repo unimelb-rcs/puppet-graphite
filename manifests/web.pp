@@ -106,7 +106,7 @@ class graphite::web(
       }
       'django.db.backends.sqlite3': {
         exec { 'graphite-syncdb':
-          command => 'graphite-manage',
+          command => 'graphite-manage syncdb --noinput',
           creates => $database_name,
           path    => ["/usr/bin", "/usr/sbin"]
         }
