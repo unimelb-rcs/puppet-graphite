@@ -10,7 +10,7 @@
 #
 # [*xfilesfactor*]
 #  A floating point number between 0 and 1, and specifies what
-#  fraction of the previous retention level’s slots must have non-null
+#  fraction of the previous retention level's slots must have non-null
 #  values in order to aggregate to a non-null value. The default is
 #  0.5.
 #
