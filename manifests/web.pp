@@ -78,8 +78,8 @@ class graphite::web(
   $database_port,
   $database_backend = 'django.db.backends.sqlite3',
 
-  $cluster_servers,
-  $carbonlink_hosts,
+  $cluster_servers = undef,
+  $carbonlink_hosts = undef,
 
 ) inherits graphite::params {
 
