@@ -6,9 +6,9 @@ define graphite::local_check (
 ) {
 
     if $interface == '0.0.0.0' or $interface == undef {
-      $interface = 'localhost'
+      $check_interface = 'localhost'
     } else {
-      $interface = $interface
+      $check_interface = $interface
     }
 
     # There is a case where there is no defined port.  in that case we
@@ -16,7 +16,7 @@ define graphite::local_check (
     # check.
     if $port != undef {
       nagios::nrpe::service { "${name}_check":
-        check_command => "/usr/lib/nagios/plugins/check_tcp -H ${interface} -p ${port}";
+        check_command => "/usr/lib/nagios/plugins/check_tcp -H ${check_interface} -p ${port}";
       }
     }
 }
