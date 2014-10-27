@@ -79,6 +79,9 @@ class graphite::web(
   $database_port         = '',
   $database_backend      = 'django.db.backends.sqlite3',
 
+  $memcache_servers      = undef,
+  $cache_duration        = '60',
+
   $cluster_servers       = undef,
   $carbonlink_hosts      = undef,
 
