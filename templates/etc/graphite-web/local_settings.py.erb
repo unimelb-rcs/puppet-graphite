@@ -48,7 +48,9 @@ TIME_ZONE = 'Australia/Melbourne'
 <% if @memcache_servers.kind_of?(Array) %>
 MEMCACHE_HOSTS = ['<%= @memcache_servers.join("', '") %>', ]
 <% end %>
+<% if @cache_duration %>
 DEFAULT_CACHE_DURATION = int(<%= @cache_duration %>)
+<% end %>
 
 
 #####################################

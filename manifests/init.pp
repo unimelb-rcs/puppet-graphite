@@ -105,7 +105,7 @@ class graphite(
   $web_database_backend                  = 'django.db.backends.sqlite3',
 
   $web_memcache_servers                  = undef,
-  $web_cache_duration                    = '60',
+  $web_cache_duration                    = undef,
 
   $web_carbonlink_hosts                  = undef,
   $web_cluster_servers                   = undef,
