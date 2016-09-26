@@ -52,7 +52,7 @@ class graphite::params {
     }
     'Debian', 'Ubuntu': {
       case $::lsbdistcodename {
-        'Trusty': {
+        'Trusty', 'Xenial': {
           # main application
           $package_carbon  = [ 'graphite-carbon' ]
           $package_whisper = [ 'python-whisper' ]
