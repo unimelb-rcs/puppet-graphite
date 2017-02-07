@@ -76,6 +76,7 @@ class graphite::params {
     'CentOS', 'Fedora', 'Scientific', 'RedHat': {
       $service_default_path     = '/etc/sysconfig'
       $service_default_user     = undef
+      $service_default_group    = undef
 
       $service_cache_name       = 'carbon-cache'
       $service_cache_hasrestart = true
@@ -97,6 +98,7 @@ class graphite::params {
     'Debian', 'Ubuntu': {
       $service_default_path     = '/etc/default'
       $service_default_user     = '_graphite'
+      $service_default_group    = '_graphite'
 
       $service_cache_name       = 'carbon-cache'
       $service_cache_hasrestart = true
@@ -115,6 +117,9 @@ class graphite::params {
 
       case $::lsbdistcodename {
         'Trusty': {
+          $web_config_path = '/etc/graphite'
+        }
+        'Xenial': {
           $web_config_path = '/etc/graphite'
         }
         default: {

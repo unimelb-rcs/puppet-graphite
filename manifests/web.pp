@@ -105,7 +105,7 @@ class graphite::web(
 
     case $database_backend {
       'django.db.backends.mysql': {
-        ensure_packages(['python-mysqldb'])
+        include ::mariadb::python
       }
       'django.db.backends.sqlite3': {
         exec { 'graphite-syncdb':
@@ -139,7 +139,6 @@ class graphite::web(
       Class['graphite::web::package'] -> Class['graphite::web::config']
 
     }
-
 
   }
 }

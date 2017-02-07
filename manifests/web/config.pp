@@ -41,7 +41,7 @@ class graphite::web::config (
     ensure => directory,
     owner  => 'root',
     group  => 'root',
-    mode   => '0644'
+    mode   => '0755'
   }
 
   file { "${graphite::params::web_config_path}/local_settings.py":
@@ -53,7 +53,7 @@ class graphite::web::config (
     require => File[$graphite::params::web_config_path]
   }
 
-  file { "$graphite::params::web_config_path/dashboard.conf":
+  file { "${graphite::params::web_config_path}/dashboard.conf":
     ensure  => present,
     source  => $graphite::web::dashboard_config_file,
     owner   => 'root',
@@ -62,4 +62,10 @@ class graphite::web::config (
     require => File[$graphite::params::web_config_path]
   }
 
+  file { '/var/lib/graphite':
+    ensure => directory,
+    owner  => $graphite::params::service_default_user,
+    group  => $graphite::params::service_default_group,
+    mode   => '0755'
+  }
 }
