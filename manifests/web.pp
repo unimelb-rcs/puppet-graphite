@@ -120,16 +120,19 @@ class graphite::web(
 
     # configuration
     class { 'graphite::web::config':
-      secret_key            => $secret_key,
+      secret_key        => $secret_key,
 
-      database_name         => $database_name,
-      database_username     => $database_username,
-      database_password     => $database_password,
-      database_host         => $database_host,
-      database_port         => $database_port,
+      database_name     => $database_name,
+      database_username => $database_username,
+      database_password => $database_password,
+      database_host     => $database_host,
+      database_port     => $database_port,
+      database_backend  => $database_backend,
 
-      carbonlink_hosts      => $carbonlink_hosts,
-      cluster_servers       => $cluster_servers,
+      carbonlink_hosts  => $carbonlink_hosts,
+      cluster_servers   => $cluster_servers,
+      memcache_servers  => $memcache_servers,
+      cache_duration    => $cache_duration,
     }
 
     #### Manage relationships
