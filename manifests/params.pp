@@ -52,7 +52,7 @@ class graphite::params {
     }
     'Debian', 'Ubuntu': {
       case $::lsbdistcodename {
-        'Trusty', 'Xenial': {
+        'Trusty', 'Xenial', 'Bionic': {
           # main application
           $package_carbon  = [ 'graphite-carbon' ]
           $package_whisper = [ 'python-whisper' ]
@@ -120,6 +120,9 @@ class graphite::params {
           $web_config_path = '/etc/graphite'
         }
         'Xenial': {
+          $web_config_path = '/etc/graphite'
+        }
+        'Bionic': {
           $web_config_path = '/etc/graphite'
         }
         default: {
