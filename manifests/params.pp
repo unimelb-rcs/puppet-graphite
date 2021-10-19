@@ -53,8 +53,13 @@ class graphite::params {
     'Ubuntu': {
       # main application
       $package_carbon  = [ 'graphite-carbon' ]
-      $package_whisper = [ 'python-whisper' ]
       $package_web     = [ 'graphite-web' ]
+      if versioncmp($::lsbdistrelease, '20.04') < 0 {
+        $package_whisper = [ 'python-whisper' ]
+      }
+      else {
+        $package_whisper = [ 'python3-whisper' ]
+      }
     }
     default: {
       fail("\"${module_name}\" provides no package default value
