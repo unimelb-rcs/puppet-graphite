@@ -109,7 +109,7 @@ class graphite::web(
       }
       'django.db.backends.sqlite3': {
         exec { 'graphite-syncdb':
-          command => 'graphite-manage syncdb --noinput',
+          command => '/usr/lib/python3/dist-packages/django/bin/django-admin.py migrate --settings=graphite.settings',
           creates => $database_name,
           user    => '_graphite',
           path    => ["/usr/bin", "/usr/sbin"]
