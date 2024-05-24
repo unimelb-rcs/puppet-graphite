@@ -84,7 +84,7 @@ class graphite::carbon::aggregator::service {
     }
   }
 
-  case $::lsbdistcodename {
+  case $facts['os']['distro']['codename'] {
     'Trusty': {}
     default: {
       if ($graphite::carbon_aggregator_default_file != undef) {

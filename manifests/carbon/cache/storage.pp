@@ -29,8 +29,8 @@ define graphite::carbon::cache::storage(
   $order = 10
 ) {
 
-  file_fragment { "carbon_storage_${$name}_${::fqdn}":
-    tag     => "carbon_cache_storage_config_${::fqdn}",
+  file_fragment { "carbon_storage_${$name}_${facts['networking']['fqdn']}":
+    tag     => "carbon_cache_storage_config_${facts['networking']['fqdn']}",
     content => template("${module_name}/etc/carbon/storage-schemas-item.erb"),
     order   => $order
   }

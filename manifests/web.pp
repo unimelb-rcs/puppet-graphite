@@ -112,7 +112,7 @@ class graphite::web(
           command => '/usr/lib/python3/dist-packages/django/bin/django-admin.py migrate --settings=graphite.settings',
           creates => $database_name,
           user    => '_graphite',
-          path    => ["/usr/bin", "/usr/sbin"]
+          path    => ['/usr/bin', '/usr/sbin']
         }
       }
     }

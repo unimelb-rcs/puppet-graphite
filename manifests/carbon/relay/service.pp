@@ -84,7 +84,7 @@ class graphite::carbon::relay::service {
     }
   }
 
-  case $::lsbdistcodename {
+  case $facts['os']['distro']['codename'] {
     'Trusty': {
       if ($service_ensure == 'running') {
         file_line { 'carbon_relay_default_enable_line':
@@ -93,14 +93,14 @@ class graphite::carbon::relay::service {
         }
         file_line { 'carbon_relay_default_disable_line':
           ensure => absent,
-          line => 'CARBON_RELAY_ENABLED=false',
-          path => "${graphite::params::service_default_path}/graphite-carbon",
+          line   => 'CARBON_RELAY_ENABLED=false',
+          path   => "${graphite::params::service_default_path}/graphite-carbon",
         }
       } else {
         file_line { 'carbon_relay_default_enable_line':
           ensure => absert,
-          line => 'CARBON_RELAY_ENABLED=true',
-          path => "${graphite::params::service_default_path}/graphite-carbon",
+          line   => 'CARBON_RELAY_ENABLED=true',
+          path   => "${graphite::params::service_default_path}/graphite-carbon",
         }
         file_line { 'carbon_relay_default_disable_line':
           line => 'CARBON_RELAY_ENABLED=false',

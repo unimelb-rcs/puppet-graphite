@@ -84,7 +84,7 @@ class graphite::carbon::cache::service {
     }
   }
 
-  case $::lsbdistcodename {
+  case $facts['os']['distro']['codename'] {
     'Trusty': {
       if ($service_ensure == 'running') {
         file_line { 'carbon_cache_default_enable_line':

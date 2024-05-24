@@ -26,14 +26,14 @@ class graphite::carbon::aggregator::config {
 
   #### Configuration
 
-  file_fragment { "carbon_aggregation_header_${::fqdn}":
-    tag     => "carbon_aggregation_rules_${::fqdn}",
+  file_fragment { "carbon_aggregation_header_${facts['networking']['fqdn']}":
+    tag     => "carbon_aggregation_rules_${facts['networking']['fqdn']}",
     content => template("${module_name}/etc/carbon/aggregation-rules-header.erb"),
     order   => 01
   }
 
   file_concat { '/etc/carbon/aggregation-rules.conf':
-    tag     => "carbon_aggregation_rules_${::fqdn}",
+    tag     => "carbon_aggregation_rules_${facts['networking']['fqdn']}",
     owner   => 'root',
     group   => 'root',
     mode    => '0644',

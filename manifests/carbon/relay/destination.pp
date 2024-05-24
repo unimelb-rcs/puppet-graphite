@@ -33,8 +33,8 @@ define graphite::carbon::relay::destination(
   $order = 10
 ) {
 
-  file_fragment { "carbon_relay_${$name}_${::fqdn}":
-    tag     => "carbon_relay_rules_${::fqdn}",
+  file_fragment { "carbon_relay_${$name}_${facts['networking']['fqdn']}":
+    tag     => "carbon_relay_rules_${facts['networking']['fqdn']}",
     content => template("${module_name}/etc/carbon/relay-rules-item.erb"),
     order   => $order
   }

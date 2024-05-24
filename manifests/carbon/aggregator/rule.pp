@@ -40,8 +40,8 @@ define graphite::carbon::aggregator::rule(
   $source,
 ) {
 
-  file_fragment { "carbon_aggregation_${$name}_${::fqdn}":
-    tag     => "carbon_aggregation_rules_${::fqdn}",
+  file_fragment { "carbon_aggregation_${$name}_${facts['networking']['fqdn']}":
+    tag     => "carbon_aggregation_rules_${facts['networking']['fqdn']}",
     content => template("${module_name}/etc/carbon/aggregation-rules-item.erb");
   }
 

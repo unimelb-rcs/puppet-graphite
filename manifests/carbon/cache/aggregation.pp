@@ -39,8 +39,8 @@ define graphite::carbon::cache::aggregation(
   $order = 10
 ) {
 
-  file_fragment { "carbon_storage_aggregation_${$name}_${::fqdn}":
-    tag     => "carbon_storage_aggregation_config_${::fqdn}",
+  file_fragment { "carbon_storage_aggregation_${$name}_${facts['networking']['fqdn']}":
+    tag     => "carbon_storage_aggregation_config_${facts['networking']['fqdn']}",
     content => template("${module_name}/etc/carbon/storage-aggregation-item.erb"),
     order   => $order;
   }

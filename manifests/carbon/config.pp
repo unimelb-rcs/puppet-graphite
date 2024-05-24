@@ -33,28 +33,28 @@ class graphite::carbon::config {
     mode   => '0644'
   }
 
-  file_fragment { "carbon_cache_storage_header_${::fqdn}":
-    tag     => "carbon_cache_storage_config_${::fqdn}",
+  file_fragment { "carbon_cache_storage_header_${facts['networking']['fqdn']}":
+    tag     => "carbon_cache_storage_config_${facts['networking']['fqdn']}",
     content => template("${module_name}/etc/carbon/storage-schemas-header.erb"),
     order   => 01
   }
 
   file_concat { '/etc/carbon/storage-schemas.conf':
-    tag     => "carbon_cache_storage_config_${::fqdn}",
+    tag     => "carbon_cache_storage_config_${facts['networking']['fqdn']}",
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
     require => File['/etc/carbon']
   }
 
-  file_fragment { "carbon_storage_aggregation_header_${::fqdn}":
-    tag     => "carbon_storage_aggregation_config_${::fqdn}",
+  file_fragment { "carbon_storage_aggregation_header_${facts['networking']['fqdn']}":
+    tag     => "carbon_storage_aggregation_config_${facts['networking']['fqdn']}",
     content => template("${module_name}/etc/carbon/storage-aggregation-header.erb"),
     order   => 01
   }
 
   file_concat { '/etc/carbon/storage-aggregation.conf':
-    tag     => "carbon_storage_aggregation_config_${::fqdn}",
+    tag     => "carbon_storage_aggregation_config_${facts['networking']['fqdn']}",
     owner   => 'root',
     group   => 'root',
     mode    => '0644',

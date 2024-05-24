@@ -43,7 +43,7 @@ class graphite::params {
   #### Internal module values
 
   # packages
-  case $::operatingsystem {
+  case $facts['os']['name'] {
     'CentOS', 'Fedora', 'Scientific', 'RedHat': {
       # main application
       $package_carbon  = [ 'python-carbon' ]
@@ -54,7 +54,7 @@ class graphite::params {
       # main application
       $package_carbon  = [ 'graphite-carbon' ]
       $package_web     = [ 'graphite-web' ]
-      if versioncmp($::lsbdistrelease, '20.04') < 0 {
+      if versioncmp($facts['os']['distro']['release']['full'], '20.04') < 0 {
         $package_whisper = [ 'python-whisper' ]
       }
       else {
@@ -63,12 +63,12 @@ class graphite::params {
     }
     default: {
       fail("\"${module_name}\" provides no package default value
-            for \"${::operatingsystem}\"")
+            for \"${facts['os']['name']}\"")
     }
   }
 
   # service parameters
-  case $::operatingsystem {
+  case $facts['os']['name'] {
     'CentOS', 'Fedora', 'Scientific', 'RedHat': {
       $service_default_path     = '/etc/sysconfig'
       $service_default_user     = undef
@@ -115,7 +115,7 @@ class graphite::params {
     }
     default: {
       fail("\"${module_name}\" provides no service parameters
-            for \"${::operatingsystem}\"")
+            for \"${facts['os']['name']}\"")
     }
   }
 
