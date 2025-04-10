@@ -63,10 +63,10 @@
 # * Richard Pijnenburg <mailto:richard@ispavailability.com>
 #
 class graphite::whisper(
-  $ensure      = $graphite::params::ensure,
-  $autoupgrade = $graphite::params::autoupgrade,
-  $status      = $graphite::params::status,
-  $version     = false
+  $ensure              = $graphite::params::ensure,
+  Boolean $autoupgrade = $graphite::params::autoupgrade,
+  $status              = $graphite::params::status,
+  $version             = false
 ) inherits graphite::params {
 
   #### Validate parameters
@@ -75,9 +75,6 @@ class graphite::whisper(
   if ! ($ensure in [ 'present', 'absent' ]) {
     fail("\"${ensure}\" is not a valid ensure parameter value")
   }
-
-  # autoupgrade
-  validate_bool($autoupgrade)
 
   #### Manage actions
 

@@ -156,9 +156,6 @@ class graphite(
     fail("\"${ensure}\" is not a valid ensure parameter value")
   }
 
-  # autoupgrade
-  validate_bool($autoupgrade)
-
   # service status
   if ! ($status in [ 'enabled', 'disabled', 'running', 'unmanaged' ]) {
     fail("\"${status}\" is not a valid status parameter value")

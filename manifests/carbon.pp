@@ -64,12 +64,12 @@
 #
 class graphite::carbon(
   $ensure                                = $graphite::params::ensure,
-  $autoupgrade                           = $graphite::params::autoupgrade,
+  Boolean $autoupgrade                   = $graphite::params::autoupgrade,
   $status                                = $graphite::params::status,
   $version                               = false,
-  $cache_enable                          = false,
-  $relay_enable                          = false,
-  $aggregator_enable                     = false,
+  Boolean $cache_enable                  = false,
+  Boolean $relay_enable                  = false,
+  Boolean $aggregator_enable             = false,
 
   $cache_storage_dir                     = undef,
   $cache_local_data_dir                  = undef,
@@ -116,18 +116,10 @@ class graphite::carbon(
     fail("\"${ensure}\" is not a valid ensure parameter value")
   }
 
-  # autoupgrade
-  validate_bool($autoupgrade)
-
   # service status
   if ! ($status in [ 'enabled', 'disabled', 'running', 'unmanaged' ]) {
     fail("\"${status}\" is not a valid status parameter value")
   }
-
-  validate_bool($cache_enable)
-  validate_bool($relay_enable)
-  validate_bool($aggregator_enable)
-
 
   #### Manage actions
 

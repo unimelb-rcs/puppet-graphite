@@ -64,10 +64,10 @@
 #
 class graphite::web(
   $ensure                = $graphite::params::ensure,
-  $autoupgrade           = $graphite::params::autoupgrade,
+  Boolean $autoupgrade   = $graphite::params::autoupgrade,
   $status                = $graphite::params::status,
   $version               = false,
-  $enable                = false,
+  Boolean $enable        = false,
   $dashboard_config_file = "puppet:///modules/${module_name}/etc/graphite-web/dashboard.conf",
 
   $secret_key,
@@ -93,9 +93,6 @@ class graphite::web(
   if ! ($ensure in [ 'present', 'absent' ]) {
     fail("\"${ensure}\" is not a valid ensure parameter value")
   }
-
-  validate_bool($enable)
-  validate_bool($autoupgrade)
 
   #### Manage actions
 
